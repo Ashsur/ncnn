@@ -45,9 +45,9 @@ int AbsVal_arm::forward_inplace(Mat& bottom_top_blob, const Option& opt) const
 
             for (int i = 0; i < size; i++)
             {
-                float32x4_t _p = vld1q_f32(ptr);
-                _p = vabsq_f32(_p);
-                vst1q_f32(ptr, _p);
+                float32x4_t _p = vld1q_f32(ptr);    //每次加载4个浮点数
+                _p = vabsq_f32(_p);                 //求绝对值
+                vst1q_f32(ptr, _p);                 //存储
 
                 ptr += 4;
             }
@@ -62,16 +62,16 @@ int AbsVal_arm::forward_inplace(Mat& bottom_top_blob, const Option& opt) const
     {
         float* ptr = bottom_top_blob.channel(q);
 
-#if __ARM_NEON
-        int nn = size >> 2;
-        int remain = size - (nn << 2);
+#if __ARM_NEON                                  //此前不都已经处理完了吗？为什么这里又用汇编的方式处理一边？
+        int nn = size >> 2;                     //nn为pack个数，一个package为4个数据
+        int remain = size - (nn << 2);          //数据量非4倍数
 #else
-        int remain = size;
+        int remain = size;                      //如果不使用ARM_NEON
 #endif // __ARM_NEON
 
 #if __ARM_NEON
 #if __aarch64__
-        if (nn > 0)
+        if (nn > 0)                             //这段内联汇编看不懂
         {
             asm volatile(
                 "0:                               \n"
@@ -105,7 +105,7 @@ int AbsVal_arm::forward_inplace(Mat& bottom_top_blob, const Option& opt) const
         }
 #endif // __aarch64__
 #endif // __ARM_NEON
-        for (; remain > 0; remain--)
+        for (; remain > 0; remain--)            //剩余数据单独处理
         {
             *ptr = *ptr > 0 ? *ptr : -*ptr;
 

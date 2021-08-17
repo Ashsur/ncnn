@@ -82,17 +82,17 @@ macro(ncnn_add_layer class)
     endif()
 
     if(WITH_LAYER_${name})
-        list(APPEND ncnn_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/layer/${name}.cpp)
+        list(APPEND ncnn_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/layer/${name}.cpp)    #添加该layer的实现源码
 
         # look for arch specific implementation and append source
         # optimized implementation for armv7, aarch64 or x86
-        set(LAYER_ARCH_SRC ${CMAKE_CURRENT_SOURCE_DIR}/layer/${NCNN_TARGET_ARCH}/${name}_${NCNN_TARGET_ARCH}.cpp)
+        set(LAYER_ARCH_SRC ${CMAKE_CURRENT_SOURCE_DIR}/layer/${NCNN_TARGET_ARCH}/${name}_${NCNN_TARGET_ARCH}.cpp)   #该layer的架构优化实现
         if(EXISTS ${LAYER_ARCH_SRC})
             set(WITH_LAYER_${name}_${NCNN_TARGET_ARCH} 1)
-            list(APPEND ncnn_SRCS ${LAYER_ARCH_SRC})
+            list(APPEND ncnn_SRCS ${LAYER_ARCH_SRC})    #添加该layer的加速实现源码
         endif()
 
-        set(LAYER_VULKAN_SRC ${CMAKE_CURRENT_SOURCE_DIR}/layer/vulkan/${name}_vulkan.cpp)
+        set(LAYER_VULKAN_SRC ${CMAKE_CURRENT_SOURCE_DIR}/layer/vulkan/${name}_vulkan.cpp)   #如果有vulkan实现，且打开NCNN_VULKAN编译选项
         if(NCNN_VULKAN AND EXISTS ${LAYER_VULKAN_SRC})
             set(WITH_LAYER_${name}_vulkan 1)
             list(APPEND ncnn_SRCS ${LAYER_VULKAN_SRC})
@@ -164,7 +164,7 @@ macro(ncnn_add_layer class)
             ncnn_add_arch_opt_layer(${class} avx "-mavx")
         endif()
     endif()
-
+    #面向arm64平台（使用ARMv8.2指令集）
     if(NCNN_RUNTIME_CPU AND NCNN_ARM82 AND ((IOS AND CMAKE_OSX_ARCHITECTURES MATCHES "arm64") OR (APPLE AND CMAKE_OSX_ARCHITECTURES MATCHES "arm64") OR (CMAKE_SYSTEM_PROCESSOR MATCHES "^(arm64|aarch64)")))
         if(NCNN_COMPILER_SUPPORT_ARM82_FP16)
             ncnn_add_arch_opt_layer(${class} arm82 "-march=armv8.2-a+fp16")

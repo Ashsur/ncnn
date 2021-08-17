@@ -57,7 +57,7 @@ static int test_absval_2()
 int main()
 {
     SRAND(7767517);
-
+    // printf("hello world\n");
     return 0
            || test_absval_0()
            || test_absval_1()

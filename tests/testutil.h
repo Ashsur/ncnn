@@ -287,7 +287,7 @@ static int CompareMat(const std::vector<ncnn::Mat>& a, const std::vector<ncnn::M
 
     return 0;
 }
-
+//一个OP的生命周期
 template<typename T>
 int test_layer_naive(int typeindex, const ncnn::ParamDict& pd, const std::vector<ncnn::Mat>& weights, const std::vector<ncnn::Mat>& a, int top_blob_count, std::vector<ncnn::Mat>& b, void (*func)(T*), int flag)
 {
@@ -741,7 +741,7 @@ int test_layer(int typeindex, const ncnn::ParamDict& pd, const std::vector<ncnn:
 template<typename T>
 int test_layer_naive(int typeindex, const ncnn::ParamDict& pd, const std::vector<ncnn::Mat>& weights, const ncnn::Mat& a, ncnn::Mat& b, void (*func)(T*), int flag)
 {
-    ncnn::Layer* op = ncnn::create_layer(typeindex);
+    ncnn::Layer* op = ncnn::create_layer(typeindex);    //创建OP
 
     if (func)
     {

@@ -53,7 +53,7 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/ncnn_generate_shader_spv_header.cma
 
 # ncnn macro
 include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/ncnn_add_shader.cmake)
-include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/ncnn_add_layer.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/../cmake/ncnn_add_layer.cmake)  #定义ncnn_add_layer宏
 
 # look for vulkan compute shader and compile
 set(NCNN_SHADER_SPV_HEX_FILES)
@@ -152,7 +152,7 @@ endif()
 
 add_custom_target(ncnn-generate-spirv DEPENDS ${NCNN_SHADER_SPV_HEX_FILES})
 
-# create new
+# create new    #将宏定义中的各变量值写入文件，layer_declaration.h.in 对应layer_declaration这个cmake变量
 configure_file(layer_declaration.h.in ${CMAKE_CURRENT_BINARY_DIR}/layer_declaration.h)
 configure_file(layer_registry.h.in ${CMAKE_CURRENT_BINARY_DIR}/layer_registry.h)
 configure_file(layer_type_enum.h.in ${CMAKE_CURRENT_BINARY_DIR}/layer_type_enum.h)
