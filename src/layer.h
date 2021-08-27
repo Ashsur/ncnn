@@ -167,7 +167,7 @@ public:
 // layer factory function
 typedef Layer* (*layer_creator_func)(void*);
 typedef void (*layer_destroyer_func)(Layer*, void*);
-
+//op算子注册，这里layer_creator_func为函数指针
 struct layer_registry_entry
 {
 #if NCNN_STRING
