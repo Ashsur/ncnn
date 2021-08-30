@@ -796,7 +796,7 @@ void Mat::substract_mean_normalize(const float* mean_vals, const float* norm_val
         op = create_layer(LayerType::Bias);
 
         ParamDict pd;
-        pd.set(0, c);
+        pd.set(0, c);	//c是什么含义？Mat(c)
 
         op->load_param(pd);
 
