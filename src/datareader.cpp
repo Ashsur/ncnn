@@ -113,7 +113,7 @@ DataReaderFromMemory& DataReaderFromMemory::operator=(const DataReaderFromMemory
 }
 
 #if NCNN_STRING
-int DataReaderFromMemory::scan(const char* format, void* p) const
+int DataReaderFromMemory::scan(const char* format, void* p) const	//??怎么理解？
 {
     size_t fmtlen = strlen(format);
 
@@ -121,7 +121,7 @@ int DataReaderFromMemory::scan(const char* format, void* p) const
     sprintf(format_with_n, "%s%%n", format);
 
     int nconsumed = 0;
-    int nscan = sscanf((const char*)d->mem, format_with_n, p, &nconsumed);
+    int nscan = sscanf((const char*)d->mem, format_with_n, p, &nconsumed);	//sscanf在哪里定义？
     d->mem += nconsumed;
 
     delete[] format_with_n;

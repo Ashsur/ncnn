@@ -13,6 +13,8 @@ macro(ncnn_add_example name)
 endmacro()
 
 if(NCNN_PIXEL)
+    #set OpenCV_DIR or you can add OpenCV_DIR to system path
+    #set(OpenCV_DIR D:\\software\\opencv\\opencv3410\\build\\x64\\vc15\\lib)
     find_package(OpenCV QUIET COMPONENTS opencv_world)
     # for opencv 2.4 on ubuntu 16.04, there is no opencv_world but OpenCV_FOUND will be TRUE
     if("${OpenCV_LIBS}" STREQUAL "")

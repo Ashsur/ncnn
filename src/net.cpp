@@ -1962,7 +1962,7 @@ int Net::load_model(const char* modelpath)
 }
 #endif // NCNN_STDIO
 
-int Net::load_param(const unsigned char* _mem)
+int Net::load_param(const unsigned char* _mem)	//从内存中加载模型参数
 {
     const unsigned char* mem = _mem;
     DataReaderFromMemory dr(mem);
@@ -1970,11 +1970,11 @@ int Net::load_param(const unsigned char* _mem)
     return static_cast<int>(mem - _mem);
 }
 
-int Net::load_model(const unsigned char* _mem)
+int Net::load_model(const unsigned char* _mem)	//从内存中加载模型权重
 {
     const unsigned char* mem = _mem;
     DataReaderFromMemory dr(mem);
-    load_model(dr);
+    load_model(dr);								//TODO
     return static_cast<int>(mem - _mem);
 }
 

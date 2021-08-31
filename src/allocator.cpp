@@ -33,8 +33,8 @@ public:
     Mutex budgets_lock;
     Mutex payouts_lock;
     unsigned int size_compare_ratio; // 0~256
-    std::list<std::pair<size_t, void*> > budgets;
-    std::list<std::pair<size_t, void*> > payouts;
+    std::list<std::pair<size_t, void*> > budgets;	//??什么含义？
+    std::list<std::pair<size_t, void*> > payouts;	//??
 };
 
 PoolAllocator::PoolAllocator()

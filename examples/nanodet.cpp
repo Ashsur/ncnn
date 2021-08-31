@@ -35,7 +35,7 @@ struct Object
 
 static inline float intersection_area(const Object& a, const Object& b)
 {
-    cv::Rect_<float> inter = a.rect & b.rect;
+    cv::Rect_<float> inter = a.rect & b.rect;	//?rect IoU where define
     return inter.area();
 }
 
@@ -259,7 +259,7 @@ static int detect_nanodet(const cv::Mat& bgr, std::vector<Object>& objects)
     int wpad = (w + 31) / 32 * 32 - w;
     int hpad = (h + 31) / 32 * 32 - h;
     ncnn::Mat in_pad;
-    ncnn::copy_make_border(in, in_pad, hpad / 2, hpad - hpad / 2, wpad / 2, wpad - wpad / 2, ncnn::BORDER_CONSTANT, 0.f);
+    ncnn::copy_make_border(in, in_pad, hpad / 2, hpad - hpad / 2, wpad / 2, wpad - wpad / 2, ncnn::BORDER_CONSTANT, 0.f);	//四周padding
 
     const float mean_vals[3] = {103.53f, 116.28f, 123.675f};
     const float norm_vals[3] = {0.017429f, 0.017507f, 0.017125f};
