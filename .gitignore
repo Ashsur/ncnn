@@ -47,6 +47,10 @@ build*/
 cmake-build-debug
 cmake-build-release
 
+#Clion
+cmake-build-debug-visual-studio
+cmake-build-release-visual-studio
+
 # Compiled python
 __pycache__
 *.pyc

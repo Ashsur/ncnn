@@ -1,4 +1,6 @@
-
+#set Protobuf_DIR or you can add Protobuf_DIR to system path
+#TODO
+set(Protobuf_DIR C:\\Users\\insta360\\Downloads\\protobuf-3.4.0\\build1\\install)
 find_package(Protobuf)
 
 if(PROTOBUF_FOUND)
