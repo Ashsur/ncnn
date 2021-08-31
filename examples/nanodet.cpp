@@ -396,6 +396,7 @@ static void draw_objects(const cv::Mat& bgr, const std::vector<Object>& objects)
 
 int main(int argc, char** argv)
 {
+    printf("hello world");
     if (argc != 2)
     {
         fprintf(stderr, "Usage: %s [imagepath]\n", argv[0]);
