@@ -113,7 +113,7 @@ DataReaderFromMemory& DataReaderFromMemory::operator=(const DataReaderFromMemory
 }
 
 #if NCNN_STRING
-int DataReaderFromMemory::scan(const char* format, void* p) const
+int DataReaderFromMemory::scan(const char* format, void* p) const	//??怎么理解？
 {
     size_t fmtlen = strlen(format);
 
