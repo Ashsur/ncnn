@@ -249,7 +249,7 @@ Layer* create_layer(int index)
 #if NCNN_RUNTIME_CPU && NCNN_ARM82DOT
     if (ncnn::cpu_support_arm_asimdhp() && ncnn::cpu_support_arm_asimddp())
     {
-        layer_creator = layer_registry_arm82dot[index].creator;
+        layer_creator = layer_registry_arm82dot[index].creator;	//?? layer_registry_arm82dot在哪里定义的？
     }
     else
 #endif // NCNN_RUNTIME_CPU && NCNN_ARM82DOT

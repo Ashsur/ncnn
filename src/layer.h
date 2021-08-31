@@ -79,7 +79,7 @@ public:
     bool support_int8_storage;
 
     // shader image storage
-    bool support_image_storage;
+    bool support_image_storage;	//?? 什么含义
 
     // shader tensor storage
     bool support_tensor_storage;
