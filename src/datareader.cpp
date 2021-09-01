@@ -118,10 +118,10 @@ int DataReaderFromMemory::scan(const char* format, void* p) const	//??怎么理�
     size_t fmtlen = strlen(format);
 
     char* format_with_n = new char[fmtlen + 4];
-    sprintf(format_with_n, "%s%%n", format);
+    sprintf(format_with_n, "%s%%n", format);	//%d=%n
 
     int nconsumed = 0;
-    int nscan = sscanf((const char*)d->mem, format_with_n, p, &nconsumed);	//sscanf在哪里定义？
+    int nscan = sscanf((const char*)d->mem, format_with_n, p, &nconsumed);	//sscanf在哪里定义？<stdio.h>读取格式化字符串
     d->mem += nconsumed;
 
     delete[] format_with_n;

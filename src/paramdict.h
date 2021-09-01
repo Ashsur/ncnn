@@ -31,7 +31,7 @@ public:
     // empty
     ParamDict();
 
-    virtual ~ParamDict();
+    virtual ~ParamDict();		//??为什么定义为虚析构
 
     // copy
     ParamDict(const ParamDict&);
@@ -57,12 +57,12 @@ public:
     void set(int id, const Mat& v);
 
 protected:
-    friend class Net;
+    friend class Net;								//声明为友元类，Net类可以访问ParamDict类的私有成员？
 
     void clear();
 
-    int load_param(const DataReader& dr);
-    int load_param_bin(const DataReader& dr);
+    int load_param(const DataReader& dr);			//读取模型参数param
+    int load_param_bin(const DataReader& dr);		//读取模型权重bin
 
 private:
     ParamDictPrivate* const d;
