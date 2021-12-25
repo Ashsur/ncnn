@@ -104,7 +104,7 @@ int ParamDict::type(int id) const
     return d->params[id].type;
 }
 
-// TODO strict type check
+// TODO strict type check, .type!=null则返回本身，否则返回def值
 int ParamDict::get(int id, int def) const
 {
     return d->params[id].type ? d->params[id].i : def;
